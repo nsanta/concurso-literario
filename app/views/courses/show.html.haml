@@ -1,5 +1,5 @@
 .page-header
-  .span3
+  .span3.well
     .span9
       = image_tag @course.asset.url, width:"300px"
     %br/  
@@ -12,14 +12,14 @@
         %p= link_to "Presentar", new_course_presentations_path(@course), class: 'btn btn-primary'
       - else
         %p Ya participaste.
-  .span9  
+  .span9.well
     %h1= @course.title
     %p
-      %strong Descripción:
+      %h3 Descripción:
       %br
       = @course.description
     %p
-      %strong Reglas:
+      %h3 Reglas:
       %br
       = @course.rules
 

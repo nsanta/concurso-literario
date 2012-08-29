@@ -5,6 +5,12 @@ gem 'rails', '3.2.6'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
+group :development do
+  gem 'hpricot'
+  gem 'ruby_parser'
+end
+
+
 gem 'mysql2'
 gem 'devise'
 gem 'haml'

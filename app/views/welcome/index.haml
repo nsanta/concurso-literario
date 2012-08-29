@@ -1,6 +1,6 @@
 %ul.thumbnails
   - @courses.each  do |course|
-    %li.span12
+    %li.span12.well
       .span3
         = image_tag course.asset.url, width:'300px'
       .span9.caption  
