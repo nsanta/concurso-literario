@@ -1,10 +1,10 @@
 class PresentationsController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :authorize_admin!, only: [:index]
+  before_filter :load_course , except: [:index]
 
 
   def index
-    @presentations = Presentation.all
+    @presentations = current_user.presentations.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -15,7 +15,7 @@ class PresentationsController < ApplicationController
   # GET /presentations/1
   # GET /presentations/1.json
   def show
-    @presentation = presentation_scope.find(params[:id])
+    @presentation = presentation_scope.where(id: params[:id], user: current_user).first
 
     respond_to do |format|
       format.html # show.html.erb
@@ -34,38 +34,18 @@ class PresentationsController < ApplicationController
     end
   end
 
-  # GET /presentations/1/edit
-  def edit
-    @presentation = presentation_scope.find(params[:id])
-  end
-
   # POST /presentations
   # POST /presentations.json
   def create
     @presentation = presentation_scope.new(params[:presentation])
-
+    @presentation.user = current_user 
     respond_to do |format|
       if @presentation.save
-        format.html { redirect_to @presentation, notice: 'Presentation was successfully created.' }
+        format.html { redirect_to @course, flash: {success: 'Gracias por participar'} }
         format.json { render json: @presentation, status: :created, location: @presentation }
       else
+        flash[:error] = 'Formato Incorrecto. Intente de nuevo'
         format.html { render action: "new" }
-        format.json { render json: @presentation.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PUT /presentations/1
-  # PUT /presentations/1.json
-  def update
-    @presentation = presentation_scope.find(params[:id])
-
-    respond_to do |format|
-      if @presentation.update_attributes(params[:presentation])
-        format.html { redirect_to @presentation, notice: 'Presentation was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
         format.json { render json: @presentation.errors, status: :unprocessable_entity }
       end
     end
@@ -73,8 +53,14 @@ class PresentationsController < ApplicationController
 
   protected
 
-  def presentation_scope
-    @presentation_scope ||= current_user.admin? ? Presentation : current_user.presentations
+  def load_course
+    @course = Course.find(params[:course_id])
   end
+
+  def presentation_scope
+    @presentation_scope ||= @course.presentations
+  end
+
+  
 
 end

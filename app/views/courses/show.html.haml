@@ -1,29 +1,25 @@
-- model_class = Course
 .page-header
-  %h1=t '.title', :default => model_class.model_name.human
+  .span3
+    .span9
+      = image_tag @course.asset.url, width:"300px"
+    %br/  
+    .span9  
+      %br/  
+      %br/  
+      - if !signed_in? 
+        %p= link_to "Registrate y participa", new_course_presentations_path(@course), class: 'btn btn-primary'
+      - elsif  !current_user.has_presentation_for?(@course)
+        %p= link_to "Presentar", new_course_presentations_path(@course), class: 'btn btn-primary'
+      - else
+        %p Ya participaste.
+  .span9  
+    %h1= @course.title
+    %p
+      %strong Descripción:
+      %br
+      = @course.description
+    %p
+      %strong Reglas:
+      %br
+      = @course.rules
 
-%p
-  %strong= 'Imagen:'
-  %br
-  = image_tag @course.asset.url
-%p
-  %strong= model_class.human_attribute_name(:title) + ':'
-  %br
-  = @course.title
-%p
-  %strong= model_class.human_attribute_name(:description) + ':'
-  %br
-  = @course.description
-%p
-  %strong= model_class.human_attribute_name(:starts_at) + ':'
-  %br
-  = @course.starts_at
-%p
-  %strong= model_class.human_attribute_name(:ends_at) + ':'
-  %br
-  = @course.ends_at
-
-.form-actions
-  = link_to t('.back', :default => t("helpers.links.back")), courses_path, :class => 'btn'
-  = link_to t('.edit', :default => t("helpers.links.edit")), edit_course_path(@course), :class => 'btn'
-  = link_to t('.destroy', :default => t("helpers.links.destroy")), course_path(@course), :method => "delete", :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')), :class => 'btn btn-danger'

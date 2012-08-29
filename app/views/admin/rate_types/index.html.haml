@@ -1,0 +1,17 @@
+.page-header
+  %h1 Criterios De Calificacion
+= link_to "Nuevo", new_admin_course_rate_type_path(@course), :class => 'btn btn-primary'
+%table.table.table-striped
+  %thead
+    %tr
+      %th Criterio
+      %th Opciones
+  %tbody
+    - @rate_types.each do |rate_type|
+      %tr
+        %td= link_to rate_type.title
+        %td
+          = link_to "Editar", edit_admin_course_rate_type_path(@course, rate_type), :class => 'btn btn-mini'
+          = link_to "Borrar", admin_course_rate_type_path(@course, rate_type), :method => :delete, :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')), :class => 'btn btn-mini btn-danger'
+
+= link_to "Nuevo", new_admin_course_rate_type_path(@course), :class => 'btn btn-primary'

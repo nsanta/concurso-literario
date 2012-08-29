@@ -1,0 +1,9 @@
+%ul.thumbnails
+  - @courses.each  do |course|
+    %li.span12
+      .span3
+        = image_tag course.asset.url, width:'300px'
+      .span9.caption  
+        %h3=course.title
+        %p= truncate course.description , length: 1600
+        %p= link_to "Participá!" , course, class: 'btn btn-primary'

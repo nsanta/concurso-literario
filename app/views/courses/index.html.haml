@@ -10,6 +10,7 @@
       %th= model_class.human_attribute_name(:description)
       %th= model_class.human_attribute_name(:starts_at)
       %th= model_class.human_attribute_name(:ends_at)
+      %th= model_class.human_attribute_name(:asset)
       %th= model_class.human_attribute_name(:created_at)
       %th=t '.actions', :default => t("helpers.actions")
   %tbody
@@ -21,6 +22,7 @@
         %td= course.description
         %td= course.starts_at
         %td= course.ends_at
+        %td= course.asset
         %td=l course.created_at
         %td
           = link_to t('.edit', :default => t("helpers.links.edit")), edit_course_path(course), :class => 'btn btn-mini'

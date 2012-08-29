@@ -1,0 +1,45 @@
+= form_for [:admin,@user], :html => { :class => 'form-horizontal' } do |f|
+  .control-group
+    = f.label :email, :class => 'control-label'
+    .controls
+      = f.text_field :email, :class => 'text_field'
+  - if f.object.new_record?    
+    .control-group
+      = f.label :password, :class => 'control-label'
+      .controls
+        = f.password_field :password, :class => 'text_field'
+    .control-group
+      = f.label :password_confirmation, "Confirmar password", :class => 'control-label'
+      .controls
+        = f.password_field :password_confirmation, :class => 'text_field'
+  .control-group
+    = f.label :role, "Rol", :class => 'control-label'
+    .controls
+      = f.select :role, User::ROLES , {include_blank: true}, :class => 'text_field'
+  .control-group
+    = f.label :first_name, "Nombre", :class => 'control-label'
+    .controls
+      = f.text_field :first_name, :class => 'text_field'
+  .control-group
+    = f.label :last_name, "Apellido", :class => 'control-label'
+    .controls
+      = f.text_field :last_name, :class => 'text_field'
+  .control-group
+    = f.label :school, "Escuela", :class => 'control-label'
+    .controls
+      = f.text_field :school, :class => 'text_field'
+  .control-group
+    = f.label :born, "Fecha de Nacimiento", :class => 'control-label'
+    .controls
+      = f.date_select :born, :class => 'date_select'
+  .control-group
+    = f.label :address, "Direccion", :class => 'control-label'
+    .controls
+      = f.text_field :address, :class => 'text_field'
+  .control-group
+    = f.label :phone, "Telefono", :class => 'control-label'
+    .controls
+      = f.text_field :phone, :class => 'text_field'
+  .form-actions
+    = f.submit nil, :class => 'btn btn-primary'
+    = link_to "Cancelar", admin_users_path, :class => 'btn'
