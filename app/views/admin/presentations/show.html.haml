@@ -4,7 +4,8 @@
 
 .form-actions
   = link_to "Criterios de calificacion" , admin_course_rate_types_path(@course) , class: 'btn btn-primary'
-  = link_to "Presentaciones" , admin_course_presentations_path(@course) , class: 'btn'
+  = link_to "Editar", edit_admin_course_path(@course), :class => 'btn'
+  = link_to "Borrar", admin_course_path(@course), :method => "delete", :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')), :class => 'btn btn-danger'
 %p
   %strong= 'Imagen:'
   %br
@@ -27,6 +28,4 @@
   = @course.ends_at
 
 .form-actions
-  = link_to "Editar", edit_admin_course_path(@course), :class => 'btn'
-  = link_to "Borrar", admin_course_path(@course), :method => "delete", :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')), :class => 'btn btn-danger'
   = link_to "Volver", admin_courses_path, :class => 'btn'

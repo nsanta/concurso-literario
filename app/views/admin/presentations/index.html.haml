@@ -1,0 +1,16 @@
+.page-header
+  %h1 Concursos
+%table.table.table-striped
+  %thead
+    %tr
+      %th Archivo
+      %th Enviado Por
+      %th Email
+      %th Opciones
+  %tbody
+    - @presentations.each do |presentation|
+      %tr
+        %td= link_to "Ver Presentación" , presentation.asset.url
+        %td= presentation.user.full_name
+        %td= presentation.user.email
+
