@@ -8,15 +8,18 @@ gem 'rails', '3.2.6'
 group :development do
   gem 'hpricot'
   gem 'ruby_parser'
+  gem 'mysql2'
 end
 
 
-gem 'mysql2'
 gem 'devise'
 gem 'haml'
 gem "twitter-bootstrap-rails"
 gem "carrierwave"
 gem "cancan"
+
+gem "thin"
+gem 'pg'
 
 # Gems used only for assets and not required
 # in production environments by default.
