@@ -7,6 +7,7 @@ class Ability
     elsif user.reviewer?
        can :manage, Rate
        can :read, Presentation
+       can :read , Course
     elsif user.presenter?
       can [:create, :read], Presentation
     end
