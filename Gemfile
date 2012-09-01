@@ -17,7 +17,7 @@ gem 'haml'
 gem "twitter-bootstrap-rails"
 gem "carrierwave"
 gem "cancan"
-
+gem 'fog'
 gem "thin"
 gem 'pg'
 

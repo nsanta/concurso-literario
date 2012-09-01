@@ -17,5 +17,21 @@
         = f.label :password_confirmation
         %br/
         = f.password_field :password_confirmation
+      %div
+        = f.label :first_name, "Nombre"
+        %br/
+        = f.text_field :first_name
+      %div
+        = f.label :last_name , "Apellido"
+        %br/
+        = f.text_field :last_name
+      %div
+        = f.label :school, "Escuela/Colegio:"
+        %br/
+        = f.text_field :school
+      %div
+        = f.label :address, "Dirección:"
+        %br/
+        = f.text_field :address
       %div= f.submit "Registrarse"
     = render "devise/shared/links"
