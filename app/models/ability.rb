@@ -4,7 +4,7 @@ class Ability
   def initialize(user)
     if user.admin?
        can :manage, :all
-    elsif user.reviwer?
+    elsif user.reviewer?
        can :manage, Rate
        can :read, Presentation
     elsif user.presenter?

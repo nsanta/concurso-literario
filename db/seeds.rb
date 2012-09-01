@@ -7,7 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 #
 User.delete_all
-password = "example123"
+password = "c0ncurs0l1t3r4r10!"
 %w(admin@admin.com reviewer@example.com presenter@example.com).each do |email|
   User.create!(email: email, password: password , password_confirmation: password,
               role: email.split('@').first)
